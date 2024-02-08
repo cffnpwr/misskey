@@ -21,6 +21,12 @@ SPDX-License-Identifier: AGPL-3.0-only
 					<MkButton @click="openMkDonation">{{ i18n.tsx._tms._flags.openX({ x: 'MkDonation' }) }}</MkButton>
 				</div>
 			</MkFolder>
+			<MkFolder defaultOpen>
+				<template #label>ReactFrontend</template>
+				<div class="_buttons">
+					<MkButton danger @click="useReactFrontend">{{ i18n.tsx._tms._flags.useReactFrontend() }}</MkButton>
+				</div>
+			</MkFolder>
 		</div>
 	</FormSection>
 </div>
@@ -35,6 +41,7 @@ import { confirm, inputText, popup, waiting } from '@/os.js';
 import FormSection from '@/components/form/section.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkFolder from '@/components/MkFolder.vue';
+import { tmsFlaskStore } from '@/tms/flask-store.js';
 
 const confirmDialog = async (): Promise<boolean> => {
 	const { canceled } = await confirm({
@@ -75,6 +82,11 @@ const openMkUpdated = async (): Promise<void> => {
 const openMkDonation = async (): Promise<void> => {
 	if (!(await confirmDialog())) return;
 	popup(defineAsyncComponent(() => import('@/components/MkDonation.vue')), {}, {}, 'closed');
+};
+
+const useReactFrontend = async (): Promise<void> => {
+	if (!(await confirmDialog())) return;
+	tmsFlaskStore.set('useReactFrontend', true);
 };
 
 const edited = ref(false);

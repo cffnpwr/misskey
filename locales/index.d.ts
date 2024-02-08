@@ -9712,6 +9712,10 @@ export interface Locale extends ILocale {
              * {x}を開く
              */
             readonly "openX": ParameterizedString<"x">;
+            /**
+             * Reactフロントエンドを使用する
+             */
+            readonly "useReactFrontend": string;
         };
     };
 }

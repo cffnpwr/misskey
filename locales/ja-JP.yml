@@ -2590,3 +2590,4 @@ _tms:
     warning: "これらの設定を有効にすると、ページの表示や挙動に深刻な影響を及ぼし、{name}が正常に利用できなくなる可能性があります。"
     forceFetchX: "{x}を強制取得"
     openX: "{x}を開く"
+    useReactFrontend: "Reactフロントエンドを使用する"
