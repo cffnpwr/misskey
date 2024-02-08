@@ -41,7 +41,7 @@ import { confirm, inputText, popup, waiting } from '@/os.js';
 import FormSection from '@/components/form/section.vue';
 import MkButton from '@/components/MkButton.vue';
 import MkFolder from '@/components/MkFolder.vue';
-import { tmsFlaskStore } from '@/tms/flask-store.js';
+import { unisonReload } from '@/scripts/unison-reload.js';
 
 const confirmDialog = async (): Promise<boolean> => {
 	const { canceled } = await confirm({
@@ -87,6 +87,7 @@ const openMkDonation = async (): Promise<void> => {
 const setUseReactFrontend = async (): Promise<void> => {
 	if (!(await confirmDialog())) return;
 	miLocalStorage.setItem('tms:flask:useReactFrontend', 't');
+	unisonReload();
 };
 
 const edited = ref(false);
