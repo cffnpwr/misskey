@@ -86,7 +86,6 @@ const openMkDonation = async (): Promise<void> => {
 
 const setUseReactFrontend = async (): Promise<void> => {
 	if (!(await confirmDialog())) return;
-	tmsFlaskStore.set('useReactFrontend', true);
 	miLocalStorage.setItem('tms:flask:useReactFrontend', 't');
 };
 

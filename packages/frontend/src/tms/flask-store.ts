@@ -11,9 +11,5 @@ import { Storage } from '@/pizzax.js';
  */
 export const tmsFlaskStore = markRaw(
 	new Storage('tmsFlask', {
-		useReactFrontend: {
-			where: 'device',
-			default: false,
-		},
 	}),
 );
