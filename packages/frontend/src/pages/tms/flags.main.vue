@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			<MkFolder defaultOpen>
 				<template #label>ReactFrontend</template>
 				<div class="_buttons">
-					<MkButton danger @click="useReactFrontend">{{ i18n.tsx._tms._flags.useReactFrontend() }}</MkButton>
+					<MkButton danger @click="setUseReactFrontend">{{ i18n.tsx._tms._flags.useReactFrontend() }}</MkButton>
 				</div>
 			</MkFolder>
 		</div>
@@ -84,9 +84,10 @@ const openMkDonation = async (): Promise<void> => {
 	popup(defineAsyncComponent(() => import('@/components/MkDonation.vue')), {}, {}, 'closed');
 };
 
-const useReactFrontend = async (): Promise<void> => {
+const setUseReactFrontend = async (): Promise<void> => {
 	if (!(await confirmDialog())) return;
 	tmsFlaskStore.set('useReactFrontend', true);
+	miLocalStorage.setItem('tms:flask:useReactFrontend', 't');
 };
 
 const edited = ref(false);
