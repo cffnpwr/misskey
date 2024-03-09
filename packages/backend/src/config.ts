@@ -155,7 +155,9 @@ export type Config = {
 	driveUrl: string;
 	userAgent: string;
 	clientEntry: string;
+	clientEntryReact: string;
 	clientManifestExists: boolean;
+	clientManifestReactExists: boolean;
 	mediaProxy: string;
 	externalMediaProxyEnabled: boolean;
 	videoThumbnailGenerator: string | null;
@@ -189,9 +191,13 @@ const path = process.env.MISSKEY_CONFIG_YML
 export function loadConfig(): Config {
 	const meta = JSON.parse(fs.readFileSync(`${_dirname}/../../../built/meta.json`, 'utf-8'));
 	const clientManifestExists = fs.existsSync(_dirname + '/../../../built/_vite_/manifest.json');
+	const clientManifestReactExists = fs.existsSync(_dirname + '/../../../built/_vite_react_/manifest.json');
 	const clientManifest = clientManifestExists ?
 		JSON.parse(fs.readFileSync(`${_dirname}/../../../built/_vite_/manifest.json`, 'utf-8'))
 		: { 'src/_boot_.ts': { file: 'src/_boot_.ts' } };
+	const clientManifestReact = clientManifestReactExists ?
+		JSON.parse(fs.readFileSync(`${_dirname}/../../../built/_vite_react_/manifest.json`, 'utf-8'))
+		: { 'src/_boot_.tsx': { file: 'src/_boot_.tsx' } };
 	const config = yaml.load(fs.readFileSync(path, 'utf-8')) as Source;
 
 	const url = tryCreateUrl(config.url);
@@ -256,7 +262,9 @@ export function loadConfig(): Config {
 			: null,
 		userAgent: `Misskey/${version} (${config.url})`,
 		clientEntry: clientManifest['src/_boot_.ts'],
+		clientEntryReact: clientManifestReact['src/_boot_.tsx'],
 		clientManifestExists: clientManifestExists,
+		clientManifestReactExists: clientManifestExists,
 		perChannelMaxNoteCacheCount: config.perChannelMaxNoteCacheCount ?? 1000,
 		perUserNotificationsMaxCount: config.perUserNotificationsMaxCount ?? 500,
 		deactivateAntennaThreshold: config.deactivateAntennaThreshold ?? (1000 * 60 * 60 * 24 * 7),

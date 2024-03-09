@@ -70,6 +70,12 @@ execa('pnpm', ['--filter', 'frontend', 'dev'], {
 	stderr: process.stderr,
 });
 
+execa('pnpm', ['--filter', 'frontend-react', 'dev'], {
+	cwd: _dirname + '/../',
+	stdout: process.stdout,
+	stderr: process.stderr,
+});
+
 execa('pnpm', ['--filter', 'sw', 'watch'], {
 	cwd: _dirname + '/../',
 	stdout: process.stdout,

@@ -1,6 +1,7 @@
 packages:
  - 'packages/backend'
  - 'packages/frontend'
+ - 'packages/frontend-react'
  - 'packages/sw'
  - 'packages/misskey-js'
  - 'packages/misskey-js/generator'

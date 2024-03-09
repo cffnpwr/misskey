@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			<MkFolder defaultOpen>
 				<template #label>ReactFrontend</template>
 				<div class="_buttons">
-					<MkButton danger @click="setUseReactFrontend">{{ i18n.tsx._tms._flags.useReactFrontend() }}</MkButton>
+					<MkButton danger @click="setUseReactFrontend">{{ i18n.ts._tms._flags.useReactFrontend }}</MkButton>
 				</div>
 			</MkFolder>
 		</div>

@@ -29,7 +29,7 @@
 
 	let forceError = localStorage.getItem('forceError');
 	if (forceError != null) {
-		renderError('FORCED_ERROR', 'This error is forced by having forceError in local storage.')
+		renderError('FORCED_ERROR', 'This error is forced by having forceError in local storage.');
 	}
 
 	//#region Detect language & fetch translations
@@ -87,7 +87,8 @@
 
 	//#region Script
 	function importAppScript() {
-		import(`/vite/${CLIENT_ENTRY}`)
+		const isReactFrontend = localStorage.getItem('tms:flask:useReactFrontend') === 't';
+		import(isReactFrontend ? `/vite-react/${CLIENT_ENTRY_REACT}` : `/vite/${CLIENT_ENTRY}`)
 			.catch(async e => {
 				console.error(e);
 				renderError('APP_IMPORT', e);
@@ -314,6 +315,6 @@
 			#errorInfo {
 				width: 50%;
 			}
-		`)
+		`);
 	}
 })();

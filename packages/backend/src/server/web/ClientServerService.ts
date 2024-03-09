@@ -51,6 +51,7 @@ const clientAssets = `${_dirname}/../../../../frontend/assets/`;
 const assets = `${_dirname}/../../../../../built/_frontend_dist_/`;
 const swAssets = `${_dirname}/../../../../../built/_sw_dist_/`;
 const viteOut = `${_dirname}/../../../../../built/_vite_/`;
+const viteReactOut = `${_dirname}/../../../../../built/_vite_react_/`;
 
 @Injectable()
 export class ClientServerService {
@@ -258,12 +259,24 @@ export class ClientServerService {
 				maxAge: ms('30 days'),
 				decorateReply: false,
 			});
+			fastify.register(fastifyStatic, {
+				root: viteReactOut,
+				prefix: '/vite-react/',
+				maxAge: ms('30 days'),
+				decorateReply: false,
+			});
 		} else {
 			const port = (process.env.VITE_PORT ?? '5173');
 			fastify.register(fastifyProxy, {
 				upstream: 'http://localhost:' + port,
 				prefix: '/vite',
 				rewritePrefix: '/vite',
+			});
+			const portReact = (process.env.VITE_PORT_REACT ?? '5174');
+			fastify.register(fastifyProxy, {
+				upstream: 'http://localhost:' + port,
+				prefix: '/vite-react',
+				rewritePrefix: '/vite-react',
 			});
 		}
 		//#endregion

@@ -1,0 +1,40 @@
+{
+  "name": "frontend-react",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "watch": "vite",
+    "dev": "vite --config vite.config.local-dev.ts --debug hmr",
+    "build": "vite build",
+    "test": "vitest --run --globals",
+    "test-and-coverage": "vitest --run --coverage --globals",
+    "typecheck": "tsc --noEmit",
+    "eslint": "eslint . --ext .ts,.tsx --quiet",
+    "lint": "pnpm typecheck && pnpm eslint"
+  },
+  "dependencies": {
+    "@tabler/icons-webfont": "2.44.0",
+    "@vanilla-extract/css": "^1.14.1",
+    "broadcast-channel": "7.0.0",
+    "compare-versions": "6.1.0",
+    "misskey-js": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "5.0.5",
+    "@types/js-yaml": "^4.0.9",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vanilla-extract/vite-plugin": "^4.0.6",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vitest": "0.34.6"
+  }
+}
